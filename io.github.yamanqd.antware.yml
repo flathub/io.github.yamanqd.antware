@@ -71,6 +71,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/YamanQD/AntWare.git
-        tag: 2.1.2
-        commit: bc1bac76e47c482a0861bcf1814d4755f64d0d42
+        tag: 2.1.4
+        commit: fe1700da80717cdddad2c9588ba41b862b11ef35
 
