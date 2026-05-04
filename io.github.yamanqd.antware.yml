@@ -1,23 +1,19 @@
 app-id: io.github.yamanqd.antware
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: run_antware.sh
-
-cleanup:
-  -  '*.a'
-  -  /pkgconfig
-  -  /include
-  -  /lib/pkgconfig
-  -  /lib/cmake
-  -  /share/doc
-
 finish-args:
   - --share=ipc
   - --socket=x11
   - --device=dri
   - --socket=pulseaudio
-
+cleanup:
+  -  /include
+  -  /lib/cmake
+  -  /lib/pkgconfig
+  -  /share/doc
+  -  '*.a'
 modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
@@ -29,13 +25,12 @@ modules:
       - -DSFML_BUILD_DOC=0
       - -DSFML_BUILD_AUDIO=1
       - -DSFML_BUILD_WINDOW=1
-    post-install:
-      - cp /app/pkgconfig/*.pc $FLATPAK_DEST/lib/pkgconfig/
     sources:
       - type: git
         url: https://github.com/SFML/SFML.git
-        tag: 2.6.0
-        commit: 11b73743c42cf7ecd7c596ba83fdbf1150ffa96c
+        tag: 2.6.1
+        commit: 69ea0cd863aed1d4092b970b676924a716ff718b
+
   - name: ASSIMP
     buildsystem: cmake-ninja
     config-opts:
@@ -46,8 +41,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/assimp/assimp.git
-        tag: v5.3.1
-        commit: 6a08c39e3a91ef385e76515cfad86aca4bfd57ff
+        tag: v5.4.3
+        commit: c35200e38ea8f058812b83de2ef32c6093b0ece2
+
   - name: GLM
     buildsystem: simple
     build-commands:
@@ -55,17 +51,21 @@ modules:
     sources:
       - type: git
         url: https://github.com/g-truc/glm.git
-        tag: 0.9.9.8
-        commit: bf71a834948186f4097caa076cd2663c69a10e1e
+        tag: 1.0.3
+        commit: 8d1fd52e5ab5590e2c81768ace50c72bae28f2ed
+
   - name: rapidjson
-    buildsystem: simple
-    build-commands:
-      - cp -r ./include/rapidjson $FLATPAK_DEST/include
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
     sources:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
-        tag: v1.1.0
-        commit: f54b0e47a08782a6131cc3d60f94d038fa6e0a51
+        commit: 24b5e7a8b27f42fa16b96fc70aade9106cf7102f
+
   - name: antware
     buildsystem: meson
     sources:
@@ -73,4 +73,5 @@ modules:
         url: https://github.com/YamanQD/AntWare.git
         tag: 2.1.4
         commit: fe1700da80717cdddad2c9588ba41b862b11ef35
-
+      - type: patch
+        path: fix-appdata.patch
