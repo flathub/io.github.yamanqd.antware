@@ -1,0 +1,49 @@
+From d74ada184b438c3325203ab3639ee375e216225a Mon Sep 17 00:00:00 2001
+From: Sabri Ünal <yakushabb@gmail.com>
+Date: Tue, 5 May 2026 01:03:51 +0300
+Subject: [PATCH] Fix appdata paper cuts
+
+Signed-off-by: Sabri Ünal <yakushabb@gmail.com>
+---
+ io.github.yamanqd.antware.metainfo.xml | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/io.github.yamanqd.antware.metainfo.xml b/io.github.yamanqd.antware.metainfo.xml
+index b7a1030..f480569 100644
+--- a/io.github.yamanqd.antware.metainfo.xml
++++ b/io.github.yamanqd.antware.metainfo.xml
+@@ -5,7 +5,12 @@
+ <name>AntWare</name>
+ <summary>An FPS game.</summary>
+ <url type="homepage">https://github.com/YamanQD/AntWare</url>
++<url type="bugtracker">https://github.com/YamanQD/AntWare/issues</url>
++<url type="vcs-browser">https://github.com/YamanQD/AntWare</url>
+ <launchable type="desktop-id">io.github.yamanqd.antware.desktop</launchable>
++<developer id="io.github.yamanqd">
++  <name>YamanQD</name>
++</developer>
+ <project_license>GPL-3.0-or-later</project_license>
+ <metadata_license>FSFAP</metadata_license>
+ <content_rating type="oars-1.1">
+@@ -26,7 +31,7 @@
+     </ul>
+ </description>
+ <screenshots>
+-    <screenshot>
++    <screenshot type="default">
+       <image>https://github.com/YamanQD/AntWare/blob/main/Screenshots/cpu.png?raw=true</image>
+     </screenshot>
+     <screenshot>
+@@ -52,6 +57,6 @@
+ 
+     <release version="2.1.2" date="2023-10-20">
+     </release>
+-    
++
+ </releases>
+-</component>
+\ No newline at end of file
++</component>
+--
+libgit2 1.7.2
+
