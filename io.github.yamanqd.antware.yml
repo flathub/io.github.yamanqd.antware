@@ -1,6 +1,6 @@
 app-id: io.github.yamanqd.antware
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: run_antware.sh
 finish-args:
@@ -38,6 +38,8 @@ modules:
       - -DASSIMP_BUILD_TESTS=0
       - -DASSIMP_INJECT_DEBUG_POSTFIX=0
       - -DASSIMP_INSTALL_PDB=0
+    build-options:
+      cxxflags: -Wno-error=unused-but-set-variable -Wno-error
     sources:
       - type: git
         url: https://github.com/assimp/assimp.git
